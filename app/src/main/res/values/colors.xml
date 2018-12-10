@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--&lt;!&ndash; 앱의 주요 색상 &ndash;&gt;-->
+    <!--<color name="colorPrimary">#3F51B5</color>-->
+    <!--&lt;!&ndash; 앱의 어두운 부분 주요 색상 &ndash;&gt;-->
+    <!--<color name="colorPrimaryDark">#303F9F</color>-->
+    <!--&lt;!&ndash; 포인트 컬러 &ndash;&gt;-->
+    <!--<color name="colorAccent">#FF4081</color>-->
+
+    <!--&lt;!&ndash; 버튼에서 사용할 컬러 &ndash;&gt;-->
+    <!--<color name="colorButton">#2196F3</color>-->
+    <!--&lt;!&ndash; 버튼 텍스트에서 사용할 컬러 &ndash;&gt;-->
+    <!--<color name="colorButtonText">#FFFFFF</color>-->
+
+    <!-- 버튼에서 사용할 컬러 -->
+    <!--<color name="colorButton">#2196F3</color>-->
+    <!--&lt;!&ndash; 버튼 텍스트에서 사용할 컬러 &ndash;&gt;-->
+    <!--<color name="colorButtonText">#FFFFFF</color>-->
+
+    <!-- 앱의 주요 색상 -->
+    <color name="colorPrimary">#2196F3</color>
+    <!-- 앱의 어두운 부분 주요 색상 -->
+    <color name="colorPrimaryDark">#1976D2</color>
+    <!-- 포인트 컬러 -->
+    <color name="colorAccent">#FF5722</color>
+    <!-- 버튼에서 사용할 컬러 -->
+    <color name="colorButton">#2196F3</color>
+    <!-- 버튼 텍스트에서 사용할 컬러 -->
+    <color name="colorButtonText">#FFFFFF</color>
+</resources>
