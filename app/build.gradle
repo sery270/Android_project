@@ -39,4 +39,9 @@ dependencies {
     api 'com.squareup.picasso:picasso:2.71828'
     // 시간 관련 라이브러리
     implementation 'net.danlew:android.joda:2.9.9.3'
+
+    implementation 'com.google.firebase:firebase-core:15.0.0'
+    implementation 'com.google.firebase:firebase-database:15.0.0'
 }
+
+apply plugin: 'com.google.gms.google-services'
