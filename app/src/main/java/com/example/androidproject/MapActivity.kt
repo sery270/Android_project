@@ -41,6 +41,7 @@ class MapActivity : AppCompatActivity() {
     val DEFAULT_ZOOM_LEVEL = 17f
     //태릉입구로 디폴트 위치 수정
     //잘했어요!
+    //나현이는 배고파
     val CITY_HALL = LatLng(37.618137, 127.075048)
 
     var googleMap: GoogleMap? = null
