@@ -1,7 +1,8 @@
 package com.example.androidproject
 
 class ReportPostClass {
-    var postId=""
-    var message=""
+    var PoiId=""
+    var DetailLocation=""
+    var ImageUrl=""
 
 }
