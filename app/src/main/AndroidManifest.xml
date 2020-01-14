@@ -41,15 +41,16 @@
         <activity android:name=".ReportListActivity" />
         <activity android:name=".InfoActivity" />
         <activity android:name=".MapActivity" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
         </activity>
         <activity android:name=".JoinActivity" />
         <activity android:name=".AdminActivity" />
         <activity android:name=".LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
         <activity android:name=".LoadingActivity" />
