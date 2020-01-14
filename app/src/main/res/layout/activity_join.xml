@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="50dp"
+    android:layout_marginRight="50dp"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".JoinActivity">
+
+
+    <EditText
+        android:id="@+id/JoinActivity_id_editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:ems="10"
+        android:hint="id"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/JoinActivity_passwd_editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:ems="10"
+        android:hint="password"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/JoinActivity_passwd2_editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:ems="10"
+        android:hint="password확인"
+        android:inputType="textPassword" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/JoinActivity_addphoto_imageView"
+            android:layout_width="215dp"
+            android:layout_height="wrap_content"
+            tools:srcCompat="@tools:sample/avatars[1]" />
+
+        <ImageView
+            android:id="@+id/JoinActivity_addphoto_Button"
+            android:layout_width="84dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/ic_menu_upload" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/JoinActivity_join_Button"
+        android:layout_width="65dp"
+        android:layout_height="35dp"
+        android:layout_margin="30dp"
+        android:background="#A3D1D1D1"
+        android:text="회원가입"
+        android:textColor="#575757" />
+
+
+</LinearLayout>
