@@ -170,10 +170,21 @@ class MapActivity : AppCompatActivity() {
     var toilets = JSONArray()
     val itemMap = mutableMapOf<JSONObject,MyItem>()
 
+    var gps = 3 //신고 개수가 3개라면
     // 화장실 이미지로 사용할 Bitmap
     val bitmap by lazy {
-        val drawable = resources.getDrawable(R.drawable.restroom_sign) as BitmapDrawable
-        Bitmap.createScaledBitmap(drawable.bitmap, 64, 64, false)
+        if(gps==0){ //신고가 0개라면 초록색
+            val drawable = resources.getDrawable(R.drawable.green_gps) as BitmapDrawable
+            Bitmap.createScaledBitmap(drawable.bitmap, 64, 64, false)
+        }
+        else if(gps>=1 && gps <=2){ //신고가 1개~2개라면 주황색
+            val drawable = resources.getDrawable(R.drawable.orange_gps) as BitmapDrawable
+            Bitmap.createScaledBitmap(drawable.bitmap, 64, 64, false)
+        }
+        else{ //신고가 3개 이상이라면 빨강색
+            val drawable = resources.getDrawable(R.drawable.red_gps) as BitmapDrawable
+            Bitmap.createScaledBitmap(drawable.bitmap, 64, 64, false)
+        }
     }
 
     // JSONArray 를 병합하기 위해 확장함수 사용
