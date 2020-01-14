@@ -170,7 +170,7 @@ class MapActivity : AppCompatActivity() {
     var toilets = JSONArray()
     val itemMap = mutableMapOf<JSONObject,MyItem>()
 
-    var gps = 3 //신고 개수가 3개라면
+    var gps = 2 //신고 개수가 3개라면
     // 화장실 이미지로 사용할 Bitmap
     val bitmap by lazy {
         if(gps==0){ //신고가 0개라면 초록색
@@ -178,7 +178,7 @@ class MapActivity : AppCompatActivity() {
             Bitmap.createScaledBitmap(drawable.bitmap, 64, 64, false)
         }
         else if(gps>=1 && gps <=2){ //신고가 1개~2개라면 주황색
-            val drawable = resources.getDrawable(R.drawable.orange_gps) as BitmapDrawable
+            val drawable = resources.getDrawable(R.drawable.yellow_gps) as BitmapDrawable
             Bitmap.createScaledBitmap(drawable.bitmap, 64, 64, false)
         }
         else{ //신고가 3개 이상이라면 빨강색
