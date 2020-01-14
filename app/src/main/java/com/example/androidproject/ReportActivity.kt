@@ -18,6 +18,7 @@ class ReportActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_report)
 
+
         //갤러리 사진 업로드
         ReportActivity_uploadPhoto_Button.setOnClickListener{
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
