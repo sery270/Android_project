@@ -3,10 +3,12 @@ package com.example.androidproject
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Camera
 import android.graphics.drawable.BitmapDrawable
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.location.Location
 import android.location.LocationManager
 import android.os.AsyncTask
@@ -20,6 +22,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.maps.android.clustering.ClusterManager
 import com.google.maps.android.clustering.view.ClusterRenderer
@@ -31,7 +34,15 @@ import org.json.JSONObject
 import java.net.URL
 
 
-class MapActivity : AppCompatActivity() {
+data class APIDATA(val ID:String)
+
+class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
+    override fun onMarkerClick(m:Marker): Boolean {
+        startActivity(Intent(this, ReportActivity::class.java))
+        //var ID:String =  m.toString()
+        //intent.putExtra("")
+        return true
+    }
 
     val PERMISSIONS = arrayOf( //권한에 대한 목록
         Manifest.permission.ACCESS_COARSE_LOCATION,
@@ -97,6 +108,7 @@ class MapActivity : AppCompatActivity() {
 
             it.setOnCameraIdleListener(clusterManager)
             it.setOnMarkerClickListener(clusterManager)
+            it.setOnMarkerClickListener(this)
         }
         mapView.getMapAsync {
             googleMap = it
@@ -340,3 +352,4 @@ class MapActivity : AppCompatActivity() {
         itemMap.put(toilet,item)
     }
 }
+
