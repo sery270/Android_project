@@ -41,6 +41,10 @@ class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
         startActivity(Intent(this, ReportActivity::class.java))
         //var ID:String =  m.toString()
         //intent.putExtra("")
+        //getJSONObject(인덱스) 어떤 인덱스가 들어가야할지, marker class의 정보를 활용해야한다.
+        var toilet = toilets.getJSONObject(1)
+        var api = APIDATA(ID = toilet.getString("POI_ID"))
+        intent.putExtra("api.ID", api.ID)
         return true
     }
 
