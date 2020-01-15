@@ -35,7 +35,6 @@ import java.net.URL
 
 
 //data class APIDATA(val ID:String)
-
 class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
     override fun onMarkerClick(m:Marker): Boolean {
         val intent =Intent(this@MapActivity, ReportActivity::class.java)
@@ -43,7 +42,7 @@ class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
         //var toilet = toilets.getJSONObject(1)
         //var api = APIDATA(ID = toilet.getString("POI_ID"))
         //intent.putExtra("api.ID", api.ID)
-        val id:String  = m.id
+        val id  = m.position
         intent.putExtra("id", id)
         startActivity(intent)
         return true
