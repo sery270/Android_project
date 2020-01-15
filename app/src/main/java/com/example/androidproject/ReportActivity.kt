@@ -33,8 +33,8 @@ class ReportActivity : AppCompatActivity() {
             val newRef = FirebaseDatabase.getInstance().getReference("Posts").push()
             post.DetailLocation = ReportActivity_detail_editText.text.toString()
             //post.ImageUrl =
-           // post.PoiId =
-            //toilet.getString("POI_ID")
+            val id = intent.getStringExtra("pid")
+            post.PoiId = id
             newRef.setValue(post)
 
             startActivity(Intent(this,FingerPrintActivity::class.java))
