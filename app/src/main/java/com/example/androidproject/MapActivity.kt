@@ -35,7 +35,7 @@ import java.net.URL
 
 
 //data class APIDATA(val ID:String)
-
+//test
 class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
     override fun onMarkerClick(m:Marker): Boolean {
         val intent =Intent(this@MapActivity, ReportActivity::class.java)
