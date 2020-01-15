@@ -31,6 +31,7 @@ class ReportActivity : AppCompatActivity() {
             val post = ReportPostClass()
             val newRef = FirebaseDatabase.getInstance().getReference("Posts").push()
             post.DetailLocation = ReportActivity_detail_editText.text.toString()
+            post.PoiId =
             //post.ImageUrl =
             post.PoiId = MapActivity.
                 //toilet.getString("POI_ID")
