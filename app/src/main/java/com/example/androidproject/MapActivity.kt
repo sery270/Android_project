@@ -30,6 +30,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.net.URL
 
+
 class MapActivity : AppCompatActivity() {
 
     val PERMISSIONS = arrayOf( //권한에 대한 목록
@@ -46,6 +47,7 @@ class MapActivity : AppCompatActivity() {
     val CITY_HALL = LatLng(37.618137, 127.075048)
 
     var googleMap: GoogleMap? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -323,14 +325,14 @@ class MapActivity : AppCompatActivity() {
 
         val item = MyItem(
             LatLng(toilet.getDouble("Y_WGS84"),toilet.getDouble("X_WGS84")),
-            toilet.getString("FNAME"),
+            toilet.getString("POI_ID"),
             toilet.getString("ANAME"),
             BitmapDescriptorFactory.fromBitmap(bitmap)
         )
         clusterManager?.addItem(
             MyItem(
                 LatLng(toilet.getDouble("Y_WGS84"), toilet.getDouble("X_WGS84")),
-                toilet.getString("FNAME"),
+                toilet.getString("POI_ID"),
                 toilet.getString("ANAME"),
                 BitmapDescriptorFactory.fromBitmap(bitmap)
             )

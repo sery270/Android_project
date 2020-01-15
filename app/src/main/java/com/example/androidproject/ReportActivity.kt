@@ -9,6 +9,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_report.*
+import com.example.androidproject.MapActivity
 
 class ReportActivity : AppCompatActivity() {
 
@@ -31,6 +32,8 @@ class ReportActivity : AppCompatActivity() {
             val newRef = FirebaseDatabase.getInstance().getReference("Posts").push()
             post.DetailLocation = ReportActivity_detail_editText.text.toString()
             //post.ImageUrl =
+            post.PoiId = MapActivity.
+                //toilet.getString("POI_ID")
             newRef.setValue(post)
 
             startActivity(Intent(this,FingerPrintActivity::class.java))
