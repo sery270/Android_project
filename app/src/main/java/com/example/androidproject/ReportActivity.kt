@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_report.*
 import com.example.androidproject.MapActivity
+import com.google.android.gms.maps.model.LatLng
 import org.json.JSONObject
 
 class ReportActivity : AppCompatActivity() {
@@ -33,7 +34,7 @@ class ReportActivity : AppCompatActivity() {
             val newRef = FirebaseDatabase.getInstance().getReference("Posts").push()
             post.DetailLocation = ReportActivity_detail_editText.text.toString()
             //post.ImageUrl =
-            val id = intent.getStringExtra("id")
+            val id = intent.getParcelableExtra<LatLng>("id")
             post.Id = id
             newRef.setValue(post)
 
