@@ -42,7 +42,7 @@ class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
         //var toilet = toilets.getJSONObject(1)
         //var api = APIDATA(ID = toilet.getString("POI_ID"))
         //intent.putExtra("api.ID", api.ID)
-        val id  = m.position
+        val id  = m.title
         intent.putExtra("id", id)
         startActivity(intent)
         return true
