@@ -36,16 +36,16 @@
         <activity android:name=".WriteActivity" />
         <activity android:name=".FingerPrintActivity" />
         <activity android:name=".ReportActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
         <activity android:name=".ReportListActivity" />
         <activity android:name=".InfoActivity" />
         <activity android:name=".MapActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
         <activity android:name=".JoinActivity" />

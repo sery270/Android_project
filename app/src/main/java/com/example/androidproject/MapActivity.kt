@@ -253,7 +253,8 @@ class MapActivity : AppCompatActivity() {
             array?.let {
                 for (i in 0 until array.length()) {
                     // 마커 추가
-                    addMarkers(array.getJSONObject(i))
+                    var toiletTemp = array.getJSONObject(i)
+                    addMarkers(toiletTemp)
                 }
             }
             clusterManager?.cluster()
