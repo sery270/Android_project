@@ -11,13 +11,6 @@
 
     tools:context=".MainActivity">
 
-    <ListView
-        android:id="@+id/ReportListActivity_listView"
-        android:layout_width="419dp"
-        android:layout_height="536dp"
-        tools:layout_editor_absoluteX="-9dp"
-        tools:layout_editor_absoluteY="194dp" />
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -25,4 +18,11 @@
         android:text="TextView"
         tools:layout_editor_absoluteX="45dp"
         tools:layout_editor_absoluteY="64dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ReportListActivity_listView"
+        android:layout_width="409dp"
+        android:layout_height="646dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="84dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

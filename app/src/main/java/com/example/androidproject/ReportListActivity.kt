@@ -1,9 +1,12 @@
 package com.example.androidproject
 
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.ArrayAdapter
-import android.widget.ListView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -13,39 +16,41 @@ import kotlinx.android.synthetic.main.activity_report_list.*
 
 class ReportListActivity : AppCompatActivity() {
 
+    private var adapter: PostAdapter? = null
+    private var firebase : FirebaseDatabase? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_report_list)
 
-        val listView: MutableList<ReportPostClass> = mutableListOf()
-
-        FirebaseDatabase.getInstance().getReference("/Posts").addChildEventListener(object :
-        ChildEventListener {
-        override fun onChildAdded(p0: DataSnapshot, p1: String?) {
-            p0?.let { p0->
-               val data = p0.getValue(ReportPostClass::class.java)
-               data?.let {
-                   if(p1 == null){
-                    listView.add(it)
-                      // textView.text=p0.child("")
-                       textView.text = data.DetailLocation
 
 
-                   }
-               }
 
-                }
+        ReportListActivity_listView.layoutManager = LinearLayoutManager(this)
+        adapter = PostAdapter(this) {
         }
-        override fun onCancelled(p0: DatabaseError) {
-        }
-        override fun onChildMoved(p0: DataSnapshot, p1: String?) {
-        }
-        override fun onChildChanged(p0: DataSnapshot, p1: String?) {
-        }
-        override fun onChildRemoved(p0: DataSnapshot) {
-        }
-    })
+        ReportListActivity_listView.adapter = adapter
+
+       // viewDatabase()
+    }
 
 
-        }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
