@@ -36,6 +36,7 @@ class ReportActivity : AppCompatActivity() {
             val post = ReportPostClass()
             val newRef = FirebaseDatabase.getInstance().getReference("Posts").push()
             post.DetailLocation = ReportActivity_detail_editText.text.toString()
+            //post.ImageUrl = ReportActivity_uploadphoto_imageView.
             //post.ImageUrl =
             val id = intent.getStringExtra("id")
             post.Id = id

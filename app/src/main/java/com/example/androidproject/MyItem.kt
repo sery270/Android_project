@@ -51,4 +51,6 @@ class MyItem(val _position: LatLng, val _title: String, val _snippet: String, va
 
         return hash
     }
+
+
 }

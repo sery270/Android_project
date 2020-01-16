@@ -43,7 +43,8 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation 'com.google.firebase:firebase-analytics:17.2.0'
-    implementation 'com.google.firebase:firebase-database:19.2.0'//firebase관련 라이브러리 의존성 추가
+    implementation 'com.google.firebase:firebase-database:19.2.0'//firebase DB 라이브러리 의존성 추가
+    implementation 'com.google.firebase:firebase-storage:19.1.0' // firebase Storage 라이브러리 의존성 추가
 
 
 
