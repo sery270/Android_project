@@ -33,7 +33,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.net.URL
 
-//나현 test
+
 //data class APIDATA(val ID:String)
 class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
     override fun onMarkerClick(m:Marker): Boolean {
