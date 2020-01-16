@@ -27,8 +27,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-data class report(var id:String?=null, var detail:String?=null)
-
 class ReportActivity : AppCompatActivity() {
     lateinit var firestore: FirebaseFirestore
     private val OPEN_GALLERY =1
@@ -37,7 +35,6 @@ class ReportActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_report)
-        firestore = FirebaseFirestore.getInstance()
 
         //갤러리 사진 업로드
         ReportActivity_uploadPhoto_Button.setOnClickListener{
@@ -117,7 +114,8 @@ class ReportActivity : AppCompatActivity() {
         if(ReportActivity_addr_textView.text.toString().isEmpty()){
             Toast.makeText(applicationContext,"입력을 완성해주세요",Toast.LENGTH_SHORT ).show()
         }
-        var report = report(intent.getStringExtra("id"), ReportActivity_detail_editText.text.toString())
+        //var report = Report(intent.getStringExtra("id"), ReportActivity_detail_editText.text.toString(),"s")
+        var report = Report(intent.getStringExtra("id"),ReportActivity_detail_editText.text.toString()," ")
 
         firestore = FirebaseFirestore.getInstance()
         firestore?.collection("Reports")?.document()?.set(report).addOnCompleteListener {
