@@ -64,7 +64,25 @@ class ReportActivity : AppCompatActivity() {
             var filename:String = formatter.format(now) + ".jpg"
 
             storageRef = storage.getReferenceFromUrl("gs://androidproject-d4054.appspot.com/").child("images/"+filename)
-            storageRef.putFile(imageFromView)
+            val uploadTask = storageRef.putFile(imageFromView)
+
+            // Storage 에서 방금 넣은 파일 url 가져오기
+            val urlTask = uploadTask.continueWithTask { task ->
+                if (!task.isSuccessful) {
+                    task.exception?.let {
+                        throw it
+                    }
+                }
+                storageRef.downloadUrl
+            }.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val downloadUri = task.result
+                } else {
+                    // Handle failures
+                    // ...
+                }
+            }
+
             startActivity(Intent(this,ReportListActivity::class.java))
 
         }
