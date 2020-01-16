@@ -41,7 +41,7 @@ class ReportActivity : AppCompatActivity() {
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
             startActivityForResult(intent,OPEN_GALLERY)
-           // imageFromView = intent.data!!
+            // imageFromView = intent.data!!
         }
 
         val postlist = mutableListOf("")
@@ -71,7 +71,7 @@ class ReportActivity : AppCompatActivity() {
                 storageRef.downloadUrl
             }.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                   //imageFromView= task.result!!
+                    //imageFromView= task.result!!
                 } else {
                     // Handle failures
                     // ...
@@ -108,7 +108,7 @@ class ReportActivity : AppCompatActivity() {
         }else{
             Log.d("ActivityResult","something wrong")
         }
-   }
+    }
 
     private fun addReport(){
         if(ReportActivity_addr_textView.text.toString().isEmpty()){
