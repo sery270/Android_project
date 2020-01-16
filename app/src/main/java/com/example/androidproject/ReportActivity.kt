@@ -28,6 +28,9 @@ class ReportActivity : AppCompatActivity() {
             intent.setType("image/*")
             startActivityForResult(intent,OPEN_GALLERY)
         }
+
+        val postlist = mutableListOf("")
+
         //게시글 정보를 firebase에 업로드
         ReportActivity_report_Button.setOnClickListener{
             val post = ReportPostClass()
@@ -38,7 +41,7 @@ class ReportActivity : AppCompatActivity() {
             post.Id = id
             newRef.setValue(post)
 
-            startActivity(Intent(this,FingerPrintActivity::class.java))
+            startActivity(Intent(this,ReportListActivity::class.java))
 
         }
     }
