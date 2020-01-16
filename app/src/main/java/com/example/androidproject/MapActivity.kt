@@ -37,7 +37,7 @@ import java.net.URL
 //data class APIDATA(val ID:String)
 class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
     override fun onMarkerClick(m:Marker): Boolean {
-        val intent =Intent(this@MapActivity, ReportListActivity::class.java)
+        val intent =Intent(this@MapActivity, ReportActivity::class.java)
         //getJSONObject(인덱스) 어떤 인덱스가 들어가야할지, marker class의 정보를 활용해야 한다.
         //var toilet = toilets.getJSONObject(1)
         //var api = APIDATA(ID = toilet.getString("POI_ID"))
