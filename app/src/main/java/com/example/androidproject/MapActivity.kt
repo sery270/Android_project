@@ -37,9 +37,6 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.net.URL
 
-
-//data class APIDATA(val ID:String)
-
 class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
     override fun onMarkerClick(m:Marker): Boolean {
         val intent =Intent(this@MapActivity, ReportActivity::class.java)
@@ -80,37 +77,6 @@ class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
         } else {
             ActivityCompat.requestPermissions(this, PERMISSIONS, REQUEST_PERMISSION_CODE)
         }
-
-/*
-        FirebaseDatabase.getInstance().getReference("Posts").child("id").equalTo("A04094").addValueEventListener(object :
-        ValueEventListener{
-            override fun onDataChange(p0: DataSnapshot) {
-                cnt = p0.childrenCount.toInt()
-            }
-
-            override fun onCancelled(p0: DatabaseError) {
-
-            }
-        })
-
-*/
-
-/*
-        FirebaseDatabase.getInstance().getReference("/Posts").child("id").equalTo("A04094").addChildEventListener(object :
-            ChildEventListener {
-            override fun onChildAdded(p0: DataSnapshot, p1: String?) {
-                //var cnt = 0
-                cnt = p0.childrenCount.toInt()
-            }
-            override fun onCancelled(p0: DatabaseError) {
-            }
-            override fun onChildMoved(p0: DataSnapshot, p1: String?) {
-            }
-            override fun onChildChanged(p0: DataSnapshot, p1: String?) {
-            }
-            override fun onChildRemoved(p0: DataSnapshot) {
-            }
-        })*/
 
         myLocationButton.setOnClickListener { onMyLocationButtonClick() }
     }
@@ -291,22 +257,6 @@ class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
                 for (i in 0 until array.length()) {
                     // 마커 추가
                     var toiletTemp = array.getJSONObject(i)
-                    var cntt = 0
-                    FirebaseDatabase.getInstance().getReference("/Posts").child("id").equalTo("A04094").addChildEventListener(object :
-                        ChildEventListener {
-                        override fun onChildAdded(p0: DataSnapshot, p1: String?) {
-                            //var cnt = 0
-                            cnt = p0.childrenCount.toInt()
-                        }
-                        override fun onCancelled(p0: DatabaseError) {
-                        }
-                        override fun onChildMoved(p0: DataSnapshot, p1: String?) {
-                        }
-                        override fun onChildChanged(p0: DataSnapshot, p1: String?) {
-                        }
-                        override fun onChildRemoved(p0: DataSnapshot) {
-                        }
-                    })
 
                     addMarkers(toiletTemp, cnt)
                 }
