@@ -71,7 +71,7 @@ class ReportActivity : AppCompatActivity() {
                 storageRef.downloadUrl
             }.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                   imageFromView= task.result!!
+                   //imageFromView= task.result!!
                 } else {
                     // Handle failures
                     // ...
