@@ -18,20 +18,26 @@ import java.io.File
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.widget.Toast
+import androidx.core.content.res.ColorStateListInflaterCompat
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.maps.android.MarkerManager
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class ReportActivity : AppCompatActivity() {
+data class report(var id:String?=null, var detail:String?=null)
 
+class ReportActivity : AppCompatActivity() {
+    lateinit var firestore: FirebaseFirestore
     private val OPEN_GALLERY =1
     lateinit var imageFromView : Uri
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_report)
-
+        firestore = FirebaseFirestore.getInstance()
 
         //갤러리 사진 업로드
         ReportActivity_uploadPhoto_Button.setOnClickListener{
@@ -45,15 +51,7 @@ class ReportActivity : AppCompatActivity() {
 
         //게시글 정보를 firebase에 업로드
         ReportActivity_report_Button.setOnClickListener{
-            val post = ReportPostClass()
-            val newRef = FirebaseDatabase.getInstance().getReference("Posts").push()
-            post.DetailLocation = ReportActivity_detail_editText.text.toString()
-            //post.ImageUrl = ReportActivity_uploadphoto_imageView.
-            //post.ImageUrl =
-            val id = intent.getStringExtra("id")
-            post.Id = id
-            newRef.setValue(post)
-
+            //이미지 처리
             // 참조 만들기
             val storage = FirebaseStorage.getInstance()
             var storageRef = storage.reference
@@ -76,14 +74,23 @@ class ReportActivity : AppCompatActivity() {
                 storageRef.downloadUrl
             }.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    val downloadUri = task.result
+                   imageFromView= task.result!!
                 } else {
                     // Handle failures
                     // ...
                 }
             }
+            addReport()
 
-            startActivity(Intent(this,ReportListActivity::class.java))
+            /*
+            var report = report(intent.getStringExtra("id"), ReportActivity_detail_editText.text.toString(),null)
+            firestore?.collection("Reports")?.document()?.set(report).addOnCompleteListener {
+                if(it.isSuccessful){
+                    Toast.makeText(applicationContext,"신고 정상 처리",Toast.LENGTH_SHORT ).show()
+                }
+            }
+
+            startActivity(Intent(this,ReportListActivity::class.java))*/
 
         }
     }
@@ -105,4 +112,20 @@ class ReportActivity : AppCompatActivity() {
             Log.d("ActivityResult","something wrong")
         }
    }
+
+    private fun addReport(){
+        if(ReportActivity_addr_textView.text.toString().isEmpty()){
+            Toast.makeText(applicationContext,"입력을 완성해주세요",Toast.LENGTH_SHORT ).show()
+        }
+        var report = report(intent.getStringExtra("id"), ReportActivity_detail_editText.text.toString())
+
+        firestore = FirebaseFirestore.getInstance()
+        firestore?.collection("Reports")?.document()?.set(report).addOnCompleteListener {
+            if(it.isSuccessful){
+                Toast.makeText(applicationContext,"신고 정상 처리",Toast.LENGTH_SHORT ).show()
+            }
+        }
+
+
+    }
 }

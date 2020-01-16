@@ -14,20 +14,24 @@ import android.location.LocationManager
 import android.os.AsyncTask
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat.getSystemService
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.database.*
 import com.google.maps.android.clustering.ClusterManager
 import com.google.maps.android.clustering.view.ClusterRenderer
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_map.*
+import kotlinx.android.synthetic.main.activity_report_list.*
 import kotlinx.android.synthetic.main.search_bar.view.*
 import org.json.JSONArray
 import org.json.JSONObject
@@ -35,13 +39,12 @@ import java.net.URL
 
 
 //data class APIDATA(val ID:String)
+
 class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
     override fun onMarkerClick(m:Marker): Boolean {
         val intent =Intent(this@MapActivity, ReportActivity::class.java)
         //getJSONObject(인덱스) 어떤 인덱스가 들어가야할지, marker class의 정보를 활용해야 한다.
-        //var toilet = toilets.getJSONObject(1)
-        //var api = APIDATA(ID = toilet.getString("POI_ID"))
-        //intent.putExtra("api.ID", api.ID)
+        //marker class의 title 속성에 서울시 API의 주키인 POI_ID 값을 넣어서 활용함
         val id  = m.title
         intent.putExtra("id", id)
         startActivity(intent)
@@ -63,6 +66,8 @@ class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
 
     var googleMap: GoogleMap? = null
 
+    var cnt = 0;
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,6 +80,37 @@ class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
         } else {
             ActivityCompat.requestPermissions(this, PERMISSIONS, REQUEST_PERMISSION_CODE)
         }
+
+/*
+        FirebaseDatabase.getInstance().getReference("Posts").child("id").equalTo("A04094").addValueEventListener(object :
+        ValueEventListener{
+            override fun onDataChange(p0: DataSnapshot) {
+                cnt = p0.childrenCount.toInt()
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+
+            }
+        })
+
+*/
+
+/*
+        FirebaseDatabase.getInstance().getReference("/Posts").child("id").equalTo("A04094").addChildEventListener(object :
+            ChildEventListener {
+            override fun onChildAdded(p0: DataSnapshot, p1: String?) {
+                //var cnt = 0
+                cnt = p0.childrenCount.toInt()
+            }
+            override fun onCancelled(p0: DatabaseError) {
+            }
+            override fun onChildMoved(p0: DataSnapshot, p1: String?) {
+            }
+            override fun onChildChanged(p0: DataSnapshot, p1: String?) {
+            }
+            override fun onChildRemoved(p0: DataSnapshot) {
+            }
+        })*/
 
         myLocationButton.setOnClickListener { onMyLocationButtonClick() }
     }
@@ -188,23 +224,6 @@ class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
     var toilets = JSONArray()
     val itemMap = mutableMapOf<JSONObject,MyItem>()
 
-    var gps = 2 //신고 개수가 3개라면
-    // 화장실 이미지로 사용할 Bitmap
-    val bitmap by lazy {
-        if(gps==0){ //신고가 0개라면 초록색
-            val drawable = resources.getDrawable(R.drawable.green_gps) as BitmapDrawable
-            Bitmap.createScaledBitmap(drawable.bitmap, 64, 64, false)
-        }
-        else if(gps>=1 && gps <=2){ //신고가 1개~2개라면 주황색
-            val drawable = resources.getDrawable(R.drawable.yellow_gps) as BitmapDrawable
-            Bitmap.createScaledBitmap(drawable.bitmap, 64, 64, false)
-        }
-        else{ //신고가 3개 이상이라면 빨강색
-            val drawable = resources.getDrawable(R.drawable.red_gps) as BitmapDrawable
-            Bitmap.createScaledBitmap(drawable.bitmap, 64, 64, false)
-        }
-    }
-
     // JSONArray 를 병합하기 위해 확장함수 사용
     fun JSONArray.merge(anotherArray: JSONArray) {
         for (i in 0 until anotherArray.length()) {
@@ -272,7 +291,24 @@ class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
                 for (i in 0 until array.length()) {
                     // 마커 추가
                     var toiletTemp = array.getJSONObject(i)
-                    addMarkers(toiletTemp)
+                    var cntt = 0
+                    FirebaseDatabase.getInstance().getReference("/Posts").child("id").equalTo("A04094").addChildEventListener(object :
+                        ChildEventListener {
+                        override fun onChildAdded(p0: DataSnapshot, p1: String?) {
+                            //var cnt = 0
+                            cnt = p0.childrenCount.toInt()
+                        }
+                        override fun onCancelled(p0: DatabaseError) {
+                        }
+                        override fun onChildMoved(p0: DataSnapshot, p1: String?) {
+                        }
+                        override fun onChildChanged(p0: DataSnapshot, p1: String?) {
+                        }
+                        override fun onChildRemoved(p0: DataSnapshot) {
+                        }
+                    })
+
+                    addMarkers(toiletTemp, cnt)
                 }
             }
             clusterManager?.cluster()
@@ -337,7 +373,23 @@ class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
     }
 
     // 마커를 추가하는 함수
-    fun addMarkers(toilet: JSONObject) {
+    fun addMarkers(toilet: JSONObject, n:Int) {
+
+        // 화장실 이미지로 사용할 Bitmap
+        val bitmap by lazy {
+            if(n == 0){ //신고가 0개라면 초록색
+                val drawable = resources.getDrawable(R.drawable.green_gps) as BitmapDrawable
+                Bitmap.createScaledBitmap(drawable.bitmap, 64, 64, false)
+            }
+            else if(n>1 && n <=2){ //신고가 1개~2개라면 주황색
+                val drawable = resources.getDrawable(R.drawable.yellow_gps) as BitmapDrawable
+                Bitmap.createScaledBitmap(drawable.bitmap, 64, 64, false)
+            }
+            else{ //신고가 3개 이상이라면 빨강색
+                val drawable = resources.getDrawable(R.drawable.red_gps) as BitmapDrawable
+                Bitmap.createScaledBitmap(drawable.bitmap, 64, 64, false)
+            }
+        }
 
         val item = MyItem(
             LatLng(toilet.getDouble("Y_WGS84"),toilet.getDouble("X_WGS84")),
@@ -356,4 +408,3 @@ class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
         itemMap.put(toilet,item)
     }
 }
-
