@@ -56,10 +56,7 @@ class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
 
     val REQUEST_PERMISSION_CODE = 1
     val DEFAULT_ZOOM_LEVEL = 17f
-    //태릉입구로 디폴트 위치 수정
-    //잘했어요!
-    //나현이는 배고파
-    //어쩌라고
+
     val CITY_HALL = LatLng(37.618137, 127.075048)
 
     var googleMap: GoogleMap? = null
@@ -341,7 +338,7 @@ class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
                 val drawable = resources.getDrawable(R.drawable.green_gps) as BitmapDrawable
                 Bitmap.createScaledBitmap(drawable.bitmap, 64, 64, false)
             }
-            else if(cnt>1 && cnt <=2){ //신고가 1개~2개라면 주황색
+            else if(cnt>=1 && cnt <=2){ //신고가 1개~2개라면 주황색
                 val drawable = resources.getDrawable(R.drawable.yellow_gps) as BitmapDrawable
                 Bitmap.createScaledBitmap(drawable.bitmap, 64, 64, false)
             }
