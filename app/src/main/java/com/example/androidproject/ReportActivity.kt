@@ -68,7 +68,7 @@ class ReportActivity : AppCompatActivity() {
                 storageRef.downloadUrl
             }.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    //imageFromView= task.result!!
+                    imageFromView= task.result!!
                 } else {
                     // Handle failures
                     // ...
@@ -106,7 +106,7 @@ class ReportActivity : AppCompatActivity() {
             Toast.makeText(applicationContext,"입력을 완성해주세요",Toast.LENGTH_SHORT ).show()
         }
         //var report = Report(intent.getStringExtra("id"), ReportActivity_detail_editText.text.toString(),"s")
-        var report = Report(intent.getStringExtra("id"),ReportActivity_detail_editText.text.toString()," ")
+        var report = Report(intent.getStringExtra("id"),ReportActivity_detail_editText.text.toString(),imageFromView.encodedPath)
 
         firestore = FirebaseFirestore.getInstance()
         firestore?.collection("Reports")?.document()?.set(report).addOnCompleteListener {
