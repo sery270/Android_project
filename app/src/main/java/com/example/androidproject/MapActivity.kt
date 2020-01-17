@@ -328,7 +328,7 @@ class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
     fun addMarkers(toilet: JSONObject) {
         var cnt = 0
         var id:String = toilet.getString("POI_ID")
-        FirebaseFirestore.getInstance().collection("Report").whereEqualTo("id",id).get().addOnCompleteListener {
+        FirebaseFirestore.getInstance().collection("Reports").whereEqualTo("id",id).get().addOnCompleteListener {
             if(it.isSuccessful){
                 for(i in it.result!!.documents){
                     cnt++
