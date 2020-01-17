@@ -27,6 +27,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.database.*
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.maps.android.clustering.ClusterManager
 import com.google.maps.android.clustering.view.ClusterRenderer
 import kotlinx.android.synthetic.main.activity_main.*
@@ -62,8 +63,6 @@ class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
     val CITY_HALL = LatLng(37.618137, 127.075048)
 
     var googleMap: GoogleMap? = null
-
-    var cnt = 0;
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -258,7 +257,7 @@ class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
                     // 마커 추가
                     var toiletTemp = array.getJSONObject(i)
 
-                    addMarkers(toiletTemp, cnt)
+                    addMarkers(toiletTemp)
                 }
             }
             clusterManager?.cluster()
@@ -324,16 +323,25 @@ class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
 
 
 
-    // 마커를 추가하는 함수
-    fun addMarkers(toilet: JSONObject, n:Int) {
 
+    // 마커를 추가하는 함수
+    fun addMarkers(toilet: JSONObject) {
+        var cnt = 0
+        var id:String = toilet.getString("POI_ID")
+        FirebaseFirestore.getInstance().collection("Report").whereEqualTo("id",id).get().addOnCompleteListener {
+            if(it.isSuccessful){
+                for(i in it.result!!.documents){
+                    cnt++
+                }
+            }
+        }
         // 화장실 이미지로 사용할 Bitmap
         val bitmap by lazy {
-            if(n == 0){ //신고가 0개라면 초록색
+            if(cnt == 0){ //신고가 0개라면 초록색
                 val drawable = resources.getDrawable(R.drawable.green_gps) as BitmapDrawable
                 Bitmap.createScaledBitmap(drawable.bitmap, 64, 64, false)
             }
-            else if(n>1 && n <=2){ //신고가 1개~2개라면 주황색
+            else if(cnt>1 && cnt <=2){ //신고가 1개~2개라면 주황색
                 val drawable = resources.getDrawable(R.drawable.yellow_gps) as BitmapDrawable
                 Bitmap.createScaledBitmap(drawable.bitmap, 64, 64, false)
             }
