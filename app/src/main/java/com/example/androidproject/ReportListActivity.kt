@@ -36,7 +36,7 @@ class ReportListActivity : AppCompatActivity() {
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     var List = ArrayList<Report>()
-                    for (dc in task.result!!.do) {
+                    for (dc in task.result!!.documents) {
                         var DTO = dc.toObject(Report::class.java)
                         List.add(DTO!!)
                     }
