@@ -372,6 +372,8 @@ class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
         task = null
     }
 
+
+
     // 마커를 추가하는 함수
     fun addMarkers(toilet: JSONObject, n:Int) {
 
