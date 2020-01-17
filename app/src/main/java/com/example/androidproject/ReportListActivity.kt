@@ -1,5 +1,6 @@
 package com.example.androidproject
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -29,6 +30,10 @@ class ReportListActivity : AppCompatActivity() {
         var id = intent.getStringExtra("id")
 
         viewDatabase(id)
+
+        ReportListActivity_reportbtn_Button.setOnClickListener{
+            startActivity(Intent(this,ReportActivity::class.java))
+        }
     }
 
     private fun viewDatabase( id:String?) { //onCreate에서 id값을 intent로 가져옴 by sery.
@@ -49,6 +54,7 @@ class ReportListActivity : AppCompatActivity() {
                 }
             }
     }
+
 }
 
 
