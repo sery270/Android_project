@@ -48,8 +48,6 @@
 
 
         </activity>
-        <activity android:name=".JoinActivity" />
-        <activity android:name=".AdminActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
