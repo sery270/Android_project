@@ -17,23 +17,6 @@
         tools:layout_editor_absoluteX="269dp"
         tools:layout_editor_absoluteY="84dp" />
 
-    <EditText
-        android:id="@+id/LoginActivity_passwd_Password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="password"
-        android:inputType="textPassword"
-        tools:layout_editor_absoluteY="33dp" />
-
-    <EditText
-        android:id="@+id/LoginActivity_id_PlainText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="id"
-        android:inputType="textPersonName" />
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,22 +24,13 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
 
-        <Button
+        <com.google.android.gms.common.SignInButton
             android:id="@+id/LoginActivity_login_Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="242dp"
+            android:layout_height="81dp"
             android:layout_marginTop="64dp"
             android:background="#C6CECECE"
             android:text="로그인" />
-
-        <Button
-            android:id="@+id/LoginActivity_join_Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="64dp"
-            android:background="#C6CECECE"
-            android:text="회원가입" />
 
     </LinearLayout>
 
