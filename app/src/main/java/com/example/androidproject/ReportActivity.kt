@@ -41,10 +41,8 @@ class ReportActivity : AppCompatActivity() {
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
             startActivityForResult(intent,OPEN_GALLERY)
-            // imageFromView = intent.data!!
         }
 
-        val postlist = mutableListOf("")
 
         //게시글 정보를 firebase에 업로드
         ReportActivity_report_Button.setOnClickListener{
@@ -53,7 +51,6 @@ class ReportActivity : AppCompatActivity() {
             val storage = FirebaseStorage.getInstance()
             var storageRef = storage.reference
 
-            //var imagesRef: StorageReference? = storageRef.child("images")
             var formatter:SimpleDateFormat = SimpleDateFormat("yyyyMMHH_mmss")
             var now:Date = Date()
             var filename:String = formatter.format(now) + ".jpg"
@@ -77,17 +74,9 @@ class ReportActivity : AppCompatActivity() {
                     // ...
                 }
             }
+
+            //데이터를 firestore로 보내는 함수 호출
             addReport()
-
-            /*
-            var report = report(intent.getStringExtra("id"), ReportActivity_detail_editText.text.toString(),null)
-            firestore?.collection("Reports")?.document()?.set(report).addOnCompleteListener {
-                if(it.isSuccessful){
-                    Toast.makeText(applicationContext,"신고 정상 처리",Toast.LENGTH_SHORT ).show()
-                }
-            }
-
-            startActivity(Intent(this,ReportListActivity::class.java))*/
 
         }
     }
@@ -110,6 +99,8 @@ class ReportActivity : AppCompatActivity() {
         }
     }
 
+    //신고 버튼을 누르면 실행되는 함수
+    //신고 내용이 firestore에 저장됨
     private fun addReport(){
         if(ReportActivity_addr_textView.text.toString().isEmpty()){
             Toast.makeText(applicationContext,"입력을 완성해주세요",Toast.LENGTH_SHORT ).show()
