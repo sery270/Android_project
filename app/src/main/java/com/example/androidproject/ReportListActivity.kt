@@ -23,16 +23,17 @@ class ReportListActivity : AppCompatActivity() {
 
         recyclerview.layoutManager = LinearLayoutManager(this)
         adapter = Adapter(this) {
-            Toast.makeText(this, "사진: ${it.ImageUrl}, 상세위치: ${it.DetailLocation}, poiid: ${it.Id}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, " 상세위치: ${it.DetailLocation}, poiid: ${it.Id}", Toast.LENGTH_SHORT).show()
         }
         recyclerview.adapter = adapter
+        var id = intent.getStringExtra("id")
 
-        viewDatabase()
+        viewDatabase(id)
     }
 
-    private fun viewDatabase() {
+    private fun viewDatabase( id:String?) { //onCreate에서 id값을 intent로 가져옴 by sery.
         firestore = FirebaseFirestore.getInstance()
-        firestore?.collection("Reports")?.get()
+        firestore?.collection("Reports")?.whereEqualTo("id",id)?.get()
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     var List = ArrayList<Report>()
@@ -49,7 +50,6 @@ class ReportListActivity : AppCompatActivity() {
             }
     }
 }
-
 
 
 
