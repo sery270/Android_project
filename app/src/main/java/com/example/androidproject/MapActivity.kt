@@ -57,7 +57,7 @@ class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
     val REQUEST_PERMISSION_CODE = 1
     val DEFAULT_ZOOM_LEVEL = 17f
 
-    val CITY_HALL = LatLng(37.618137, 127.075048)
+    val CITY_HALL = LatLng(37.4923861462717, 126.909832374686)
 
     var googleMap: GoogleMap? = null
 
@@ -273,6 +273,7 @@ class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
             )
 
             searchBar.autoCompleteTextView.threshold=1
+//            searchBar.autoCompleteTextView = adapter
             searchBar.autoCompleteTextView.setAdapter(adapter)
         }
     }
@@ -324,44 +325,49 @@ class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
     // 마커를 추가하는 함수
     fun addMarkers(toilet: JSONObject) {
         var cnt = 0
-        var id:String = toilet.getString("POI_ID")
-        FirebaseFirestore.getInstance().collection("Reports").whereEqualTo("id",id).get().addOnCompleteListener {
-            if(it.isSuccessful){
-                for(i in it.result!!.documents){
-                    cnt++
+        val id:String = toilet.getString("POI_ID")
+        FirebaseFirestore.getInstance()
+            .collection("Reports")
+            .whereEqualTo("id",id).get()
+            .addOnSuccessListener {
+                cnt = it.size()
+                println(cnt)
+                // 화장실 이미지로 사용할 Bitmap
+                val bitmap by lazy {
+                    if(cnt == 0){ //신고가 0개라면 초록색
+                        val drawable = resources.getDrawable(R.drawable.green_gps) as BitmapDrawable
+                        Bitmap.createScaledBitmap(drawable.bitmap, 64, 64, false)
+                    }
+                    else if((0 < cnt) && (cnt <=2)){ //신고가 1개~2개라면 주황색
+                        val drawable = resources.getDrawable(R.drawable.yellow_gps) as BitmapDrawable
+                        Bitmap.createScaledBitmap(drawable.bitmap, 64, 64, false)
+                    }
+                    else{ //신고가 3개 이상이라면 빨강색
+                        val drawable = resources.getDrawable(R.drawable.red_gps) as BitmapDrawable
+                        Bitmap.createScaledBitmap(drawable.bitmap, 64, 64, false)
+                    }
+
                 }
-            }
-        }
-        // 화장실 이미지로 사용할 Bitmap
-        val bitmap by lazy {
-            if(cnt == 0){ //신고가 0개라면 초록색
-                val drawable = resources.getDrawable(R.drawable.green_gps) as BitmapDrawable
-                Bitmap.createScaledBitmap(drawable.bitmap, 64, 64, false)
-            }
-            else if(cnt>=1 && cnt <=2){ //신고가 1개~2개라면 주황색
-                val drawable = resources.getDrawable(R.drawable.yellow_gps) as BitmapDrawable
-                Bitmap.createScaledBitmap(drawable.bitmap, 64, 64, false)
-            }
-            else{ //신고가 3개 이상이라면 빨강색
-                val drawable = resources.getDrawable(R.drawable.red_gps) as BitmapDrawable
-                Bitmap.createScaledBitmap(drawable.bitmap, 64, 64, false)
-            }
+                val item = MyItem(
+                    LatLng(toilet.getDouble("Y_WGS84"),toilet.getDouble("X_WGS84")),
+                    toilet.getString("POI_ID"),
+                    toilet.getString("ANAME"),
+                    BitmapDescriptorFactory.fromBitmap(bitmap)
+                )
+                clusterManager?.addItem(
+                    MyItem(
+                        LatLng(toilet.getDouble("Y_WGS84"), toilet.getDouble("X_WGS84")),
+                        toilet.getString("POI_ID"),
+                        toilet.getString("ANAME"),
+                        BitmapDescriptorFactory.fromBitmap(bitmap)
+                    )
+                )
+                itemMap.put(toilet,item)
+
+
         }
 
-        val item = MyItem(
-            LatLng(toilet.getDouble("Y_WGS84"),toilet.getDouble("X_WGS84")),
-            toilet.getString("POI_ID"),
-            toilet.getString("ANAME"),
-            BitmapDescriptorFactory.fromBitmap(bitmap)
-        )
-        clusterManager?.addItem(
-            MyItem(
-                LatLng(toilet.getDouble("Y_WGS84"), toilet.getDouble("X_WGS84")),
-                toilet.getString("POI_ID"),
-                toilet.getString("ANAME"),
-                BitmapDescriptorFactory.fromBitmap(bitmap)
-            )
-        )
-        itemMap.put(toilet,item)
+
+
     }
 }
