@@ -27,13 +27,20 @@ class ReportListActivity : AppCompatActivity() {
             Toast.makeText(this, " 상세위치: ${it.DetailLocation}, poiid: ${it.Id}", Toast.LENGTH_SHORT).show()
         }
         recyclerview.adapter = adapter
-        var id = intent.getStringExtra("id")
+
+        var id = intent.getStringExtra("id") // 마커클릭시 가져오는 id
 
         viewDatabase(id)
 
         ReportListActivity_reportbtn_Button.setOnClickListener{
-            startActivity(Intent(this,ReportActivity::class.java))
+
+            //마커 클릭시 가져온 id를 신고페이지로 넘기기 위함
+            val intent = Intent(this@ReportListActivity,ReportActivity::class.java)
+            val id=intent.putExtra("id",id)
+
+            startActivity(intent)
         }
+
     }
 
     private fun viewDatabase( id:String?) { //onCreate에서 id값을 intent로 가져옴 by sery.
