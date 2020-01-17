@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_report_list.view.*
+import kotlinx.android.synthetic.main.data_list_item.view.*
 import java.util.ArrayList
 
 class Adapter (val context: Context, val itemCheck: (Report) -> Unit)
@@ -16,7 +16,7 @@ class Adapter (val context: Context, val itemCheck: (Report) -> Unit)
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(viewGroup.context)
-        val itemView: View = inflater.inflate(R.layout.activity_report_list, viewGroup, false)
+        val itemView: View = inflater.inflate(R.layout.data_list_item, viewGroup, false)
         return ViewHolder(itemView, itemCheck)
     }
 

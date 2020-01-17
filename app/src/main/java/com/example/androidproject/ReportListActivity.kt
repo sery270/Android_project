@@ -21,28 +21,26 @@ class ReportListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_report_list)
 
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = PetAdapter(this) {
-            Toast.makeText(this, "Breed: ${it.breed}, Age: ${it.age}", Toast.LENGTH_SHORT).show()
+        recyclerview.layoutManager = LinearLayoutManager(this)
+        adapter = Adapter(this) {
+            Toast.makeText(this, "사진: ${it.ImageUrl}, 상세위치: ${it.DetailLocation}, poiid: ${it.Id}", Toast.LENGTH_SHORT).show()
         }
-        recyclerView.adapter = adapter
+        recyclerview.adapter = adapter
 
         viewDatabase()
     }
 
     private fun viewDatabase() {
-        progressBarView.visibility = View.VISIBLE
         firestore = FirebaseFirestore.getInstance()
-        firestore?.collection("Pet3")?.get()
+        firestore?.collection("Reports")?.get()
             ?.addOnCompleteListener { task ->
-                progressBarView.visibility = View.GONE
                 if (task.isSuccessful) {
-                    var petList = ArrayList<PetDTO>()
+                    var List = ArrayList<Report>()
                     for (dc in task.result!!.documents) {
-                        var petDTO = dc.toObject(PetDTO::class.java)
-                        petList.add(petDTO!!)
+                        var DTO = dc.toObject(Report::class.java)
+                        List.add(DTO!!)
                     }
-                    adapter?.setItems(petList)
+                    adapter?.setItems(List)
                     adapter?.notifyDataSetChanged()
                 }
                 else {

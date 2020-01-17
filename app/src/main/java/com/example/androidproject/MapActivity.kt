@@ -39,7 +39,7 @@ import java.net.URL
 
 class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
     override fun onMarkerClick(m:Marker): Boolean {
-        val intent =Intent(this@MapActivity, ReportActivity::class.java)
+        val intent =Intent(this@MapActivity, ReportListActivity::class.java)
         //getJSONObject(인덱스) 어떤 인덱스가 들어가야할지, marker class의 정보를 활용해야 한다.
         //marker class의 title 속성에 서울시 API의 주키인 POI_ID 값을 넣어서 활용함
         val id  = m.title
