@@ -43,6 +43,11 @@ class ReportListActivity : AppCompatActivity() {
 
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(Intent(this, MapActivity::class.java))
+    }
+
     private fun viewDatabase( id:String?) { //onCreate에서 id값을 intent로 가져옴 by sery.
         firestore = FirebaseFirestore.getInstance()
         firestore?.collection("Reports")?.whereEqualTo("id",id)?.get()

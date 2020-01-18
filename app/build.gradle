@@ -50,7 +50,7 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-analytics:17.2.2'
 
-    implementation 'com.google.firebase:firebase-analytics:17.2.1'
+    implementation 'com.google.firebase:firebase-analytics:17.2.2'
 
     implementation 'com.google.firebase:firebase-database:19.2.0'//firebase DB 라이브러리 의존성 추가
     implementation 'com.google.firebase:firebase-storage:19.1.0' // firebase Storage 라이브러리 의존성 추가
