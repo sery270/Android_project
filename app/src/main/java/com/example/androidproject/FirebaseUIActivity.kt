@@ -18,7 +18,7 @@ abstract class FirebaseUIActivity : AppCompatActivity() {
     fun loadWithGlide(imageurl:String) {
         // [START storage_load_with_glide]
         // Reference to an image file in Cloud Storage
-        val storageReference = FirebaseStorage.getInstance().getReferenceFromUrl("gs://androidproject-d4054.appspot.com/"+imageurl)
+        val storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(""+imageurl)
 
         // ImageView in your Activity
         val imageView = findViewById<ImageView>(R.id.uploadimg)
