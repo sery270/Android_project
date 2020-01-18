@@ -16,7 +16,6 @@ import java.util.ArrayList
 class Adapter (val context: Context, val itemCheck: (Report) -> Unit)
     : RecyclerView.Adapter<Adapter.ViewHolder>() {
     private var items = ArrayList<Report>()
-    private var firebaseui:FirebaseUIActivity? = null
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(viewGroup.context)
@@ -37,31 +36,26 @@ class Adapter (val context: Context, val itemCheck: (Report) -> Unit)
         this.items = items
     }
 
+
+
     inner class ViewHolder(itemView: View, itemCheck: (Report) -> Unit)
         : RecyclerView.ViewHolder(itemView) {
         fun setItem(item: Report) {
-            /*val resourceId = context.resources.getIdentifier(
-                item.ImageUrl,
-                "drawable",
-                context.packageName
-            )
-            if (resourceId in 0..1) {
-                itemView.uploadimg?.setImageResource(R.mipmap.ic_launcher)
-            }
-            else {
-                itemView.uploadimg?.setImageResource(resourceId)
-            */
-
-
             // url을 다운받기
+
+
 
             itemView.poiid.text = item.Id
             itemView.detail.text = item.DetailLocation
-            firebaseui?.loadWithGlide(item.ImageUrl!!)
+            //firebaseui?.loadWithGlide(item.ImageUrl!!)
+            Glide.with(itemView)
+                .load(item.ImageUrl)
+                .into(itemView.uploadimg)
 
 
 
             itemView.setOnClickListener() { itemCheck(item) }
         }
     }
+
 }
