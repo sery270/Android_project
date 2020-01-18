@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.ImageView
 import com.bumptech.glide.Glide
-//mport com.google.firebase.referencecode.storage.R
+//import com.google.firebase.referencecode.storage.R
 import com.google.firebase.storage.FirebaseStorage
 
 abstract class FirebaseUIActivity : AppCompatActivity() {
@@ -18,7 +18,7 @@ abstract class FirebaseUIActivity : AppCompatActivity() {
     fun loadWithGlide(imageurl:String) {
         // [START storage_load_with_glide]
         // Reference to an image file in Cloud Storage
-        val storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(imageurl)
+        val storageReference = FirebaseStorage.getInstance().getReferenceFromUrl("gs://androidproject-d4054.appspot.com/"+imageurl)
 
         // ImageView in your Activity
         val imageView = findViewById<ImageView>(R.id.uploadimg)

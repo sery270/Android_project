@@ -24,7 +24,7 @@ class ReportListActivity : AppCompatActivity() {
 
         recyclerview.layoutManager = LinearLayoutManager(this)
         adapter = Adapter(this) {
-            Toast.makeText(this, " 상세위치: ${it.DetailLocation}, poiid: ${it.Id}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, " 상세위치: ${it.DetailLocation}, poiid: ${it.Id}, image: ${it.ImageUrl}", Toast.LENGTH_SHORT).show()
         }
         recyclerview.adapter = adapter
 
