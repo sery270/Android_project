@@ -42,10 +42,7 @@ class Adapter (val context: Context, val itemCheck: (Report) -> Unit)
         : RecyclerView.ViewHolder(itemView) {
         fun setItem(item: Report) {
             // url을 다운받기
-
-
-
-            itemView.poiid.text = item.Id
+            itemView.poiid.text = "dd"
             itemView.detail.text = item.DetailLocation
             //firebaseui?.loadWithGlide(item.ImageUrl!!)
            Glide.with(itemView)
