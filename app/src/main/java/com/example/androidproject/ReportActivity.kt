@@ -61,6 +61,8 @@ class ReportActivity : AppCompatActivity() {
             val uploadTask = storageRef.putFile(imageFromView)
           //  imageUrlfromStorage = storageRef.downloadUrl.result!!
 
+
+
             // Storage 에서 방금 넣은 파일 url 가져오기
             val urlTask = uploadTask.continueWithTask { task ->
                     if (!task.isSuccessful) {
@@ -79,7 +81,7 @@ class ReportActivity : AppCompatActivity() {
             }
 
             //데이터를 firestore로 보내는 함수 호출
-            addReport(urlTask.toString())
+            addReport(imageUrlfromStorage)
 
         }
     }
@@ -104,7 +106,7 @@ class ReportActivity : AppCompatActivity() {
 
     //신고 버튼을 누르면 실행되는 함수
     //신고 내용이 firestore에 저장됨
-    private fun addReport(url: String){
+    private fun addReport(url:Uri){
         if(ReportActivity_addr_textView.text.toString().isEmpty()){
             Toast.makeText(applicationContext,"입력을 완성해주세요",Toast.LENGTH_SHORT ).show()
         }

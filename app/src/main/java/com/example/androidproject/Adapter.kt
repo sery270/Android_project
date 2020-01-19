@@ -48,10 +48,9 @@ class Adapter (val context: Context, val itemCheck: (Report) -> Unit)
             itemView.poiid.text = item.Id
             itemView.detail.text = item.DetailLocation
             //firebaseui?.loadWithGlide(item.ImageUrl!!)
-            Glide.with(itemView)
+           Glide.with(itemView)
                 .load(item.ImageUrl)
                 .into(itemView.uploadimg)
-
 
 
             itemView.setOnClickListener() { itemCheck(item) }
