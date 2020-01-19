@@ -51,15 +51,15 @@ class ReportListActivity : AppCompatActivity() {
     private fun viewDatabase( id:String?) { //onCreate에서 id값을 intent로 가져옴 by sery.
         firestore = FirebaseFirestore.getInstance()
         firestore?.collection("Reports")?.whereEqualTo("id",id)?.get()
-            ?.addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    var List = ArrayList<Report>()
-                    for (dc in task.result!!.documents) {
-                        var DTO = dc.toObject(Report::class.java)
-                        List.add(DTO!!)
-                    }
-                    adapter?.setItems(List)
-                    adapter?.notifyDataSetChanged()
+                        ?.addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                var List = ArrayList<Report>()
+                                for (dc in task.result!!.documents) {
+                                    var DTO = dc.toObject(Report::class.java)
+                                    List.add(DTO!!)
+                                }
+                                adapter?.setItems(List)
+                                adapter?.notifyDataSetChanged()
                 }
                 else {
                     Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
