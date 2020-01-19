@@ -7,5 +7,5 @@ import android.net.Uri
 data class Report(
     var Id:String?  = null,
     var DetailLocation:String? =null,
-    var ImageUrl: Uri
+    var ImageUrl: String?=null
 )
