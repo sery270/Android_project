@@ -343,7 +343,7 @@ class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
                         val drawable = resources.getDrawable(R.drawable.yellow_gps) as BitmapDrawable
                         Bitmap.createScaledBitmap(drawable.bitmap, 64, 64, false)
                     }
-                    else{ //신고가 3개 이상이라면 빨강색
+                     else{ //신고가 3개 이상이라면 빨강색
                         val drawable = resources.getDrawable(R.drawable.red_gps) as BitmapDrawable
                         Bitmap.createScaledBitmap(drawable.bitmap, 64, 64, false)
                     }

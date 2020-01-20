@@ -15,8 +15,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this,MapActivity::class.java))
 
         }
-        MainActivity_commu_imageView.setOnClickListener{
-            startActivity(Intent(this,CommunityActivity::class.java))
-        }
+
     }
 }

@@ -55,28 +55,28 @@ class Adapter (val context: Context, val itemCheck: (Report) -> Unit)
             itemView.poiid.text = item.Id
             itemView.detail.text = item.DetailLocation
             //firebaseui?.loadWithGlide(item.ImageUrl!!)
-        /*   Glide.with(itemView)
-                .load(item.ImageUrl)
-                .into(itemView.uploadimg)
-*/
+            /*   Glide.with(itemView)
+                    .load(item.ImageUrl)
+                    .into(itemView.uploadimg)
+    */
 
             lateinit var imageUrlfromStorage: Uri
 
-          //  val storage = FirebaseStorage.getInstance()
-         //   var storageRef = storage.getReferenceFromUrl("gs://androidprojectguru.appspot.com").child("images/"+item.ImageUrl)
-        //    storageRef.downloadUrl.addOnCompleteListener {task->
-         //       if(task.isSuccessful){
-         //           imageUrlfromStorage = task.result!!
-         //           Glide.with(itemView)
-         //               .load(imageUrlfromStorage)
-          //              .into(itemView.uploadimg)
+            val storage = FirebaseStorage.getInstance()
+            var storageRef = storage.getReferenceFromUrl("gs://androidprojectguru.appspot.com").child("images/"+item.ImageUrl)
+            storageRef.downloadUrl.addOnCompleteListener {task->
+                if(task.isSuccessful){
+                    imageUrlfromStorage = task.result!!
+                    Glide.with(itemView)
+                        .load(imageUrlfromStorage)
+                        .into(itemView.uploadimg)
 
-           //     }
-           //     else {
-          //          // 실패하면 토스트 띄울건데 토스트 띄우는 코드 잘 모름;;
-           //     }
+                }
+                else {
+                    // 실패하면 토스트 띄울건데 토스트 띄우는 코드 잘 모름;;
+                }
 
-          //  }
+            }
 
             itemView.setOnClickListener() { itemCheck(item) }
         }
