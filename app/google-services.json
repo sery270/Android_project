@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "740347427294",
-    "firebase_url": "https://androidproject-d4054.firebaseio.com",
-    "project_id": "androidproject-d4054",
-    "storage_bucket": "androidproject-d4054.appspot.com"
+    "project_number": "764801460890",
+    "firebase_url": "https://androidprojectguru.firebaseio.com",
+    "project_id": "androidprojectguru",
+    "storage_bucket": "androidprojectguru.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:740347427294:android:68e75721e917c71618454f",
+        "mobilesdk_app_id": "1:764801460890:android:b30472108059c877b24d23",
         "android_client_info": {
           "package_name": "com.example.androidproject"
         }
       },
       "oauth_client": [
         {
-          "client_id": "740347427294-8rgokujmiqqkpq860uef65r0mn90lolt.apps.googleusercontent.com",
+          "client_id": "764801460890-hc6l1gfqjbvl8sst1p52dt20t76ac64m.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.androidproject",
@@ -23,7 +23,7 @@
           }
         },
         {
-          "client_id": "740347427294-f2er4fvqorlnai3pum6ipr6q3p396r1d.apps.googleusercontent.com",
+          "client_id": "764801460890-ndlkof97m9pgh18tlmrdrp5q32rhcrm1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.androidproject",
@@ -31,7 +31,7 @@
           }
         },
         {
-          "client_id": "740347427294-u57sr5vnr10er73kupimoeqdcnk88oqj.apps.googleusercontent.com",
+          "client_id": "764801460890-juoj32sqm7fo3mbds3csqcb6aga4f34v.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.androidproject",
@@ -39,7 +39,7 @@
           }
         },
         {
-          "client_id": "740347427294-t2fc16be4udbr6lqn0a4uspp1qamh98u.apps.googleusercontent.com",
+          "client_id": "764801460890-89kkebrmo74mv58fdpvguf71csjci1gj.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.androidproject",
@@ -47,20 +47,20 @@
           }
         },
         {
-          "client_id": "740347427294-9gbpnjlvtrnviva3mrn51j25m274ssua.apps.googleusercontent.com",
+          "client_id": "764801460890-h0s2nlrof3e1filu5kbd31orabbg5llv.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCosoQ-ZBEudcyUqyFLaDrxkmHvTA4KoNA"
+          "current_key": "AIzaSyDhIEEnp2BhmJAJu1lmEFxjvvcTrCsEEis"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "740347427294-9gbpnjlvtrnviva3mrn51j25m274ssua.apps.googleusercontent.com",
+              "client_id": "764801460890-h0s2nlrof3e1filu5kbd31orabbg5llv.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

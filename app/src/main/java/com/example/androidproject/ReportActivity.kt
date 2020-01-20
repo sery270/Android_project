@@ -62,8 +62,8 @@ class ReportActivity : AppCompatActivity() {
 
 
             //데이터를 firestore로 보내는 함수 호출
-            // filename을 imageUrl필드에 저장함
-            addReport(filename)
+             //filename을 imageUrl필드에 저장함
+           addReport(filename)
 
         }
     }
@@ -89,12 +89,7 @@ class ReportActivity : AppCompatActivity() {
     //신고 버튼을 누르면 실행되는 함수
     //신고 내용이 firestore에 저장됨
     private fun addReport(url:String){
-        if(ReportActivity_addr_textView.text.toString().isEmpty()){
-            Toast.makeText(applicationContext,"입력을 완성해주세요",Toast.LENGTH_SHORT ).show()
-        }
-        //var report = Report(intent.getStringExtra("id"), ReportActivity_detail_editText.text.toString(),"s")
         var report = Report(intent.getStringExtra("id"),ReportActivity_detail_editText.text.toString(),url)
-
         firestore = FirebaseFirestore.getInstance()
         firestore?.collection("Reports")?.document()?.set(report).addOnCompleteListener {
             if(it.isSuccessful){

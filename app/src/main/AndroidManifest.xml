@@ -15,11 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ListActivity" />
-        <activity android:name=".WriteActivity"/>
-        <activity android:name=".WriteListActivity"/>
+        <activity android:name=".WriteActivity" />
 
-
+        <activity android:name=".CommunityActivity"/>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -43,7 +41,7 @@
         </activity> <!-- 구글 클라우드 플랫폼에서 발급받은 API 키를 여기에 -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCosoQ-ZBEudcyUqyFLaDrxkmHvTA4KoNA" /> <!-- 구글 플레이 서비스 버전을 적는 곳으로 그대로 타이핑 -->
+            android:value="AIzaSyDhIEEnp2BhmJAJu1lmEFxjvvcTrCsEEis" /> <!-- 구글 플레이 서비스 버전을 적는 곳으로 그대로 타이핑 -->
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" /> <!-- 안드로이드 파이 버전부터 필요 -->
@@ -59,13 +57,15 @@
         <activity android:name=".ReportActivity" />
         <activity android:name=".ReportListActivity" />
         <activity android:name=".InfoActivity" />
-        <activity android:name=".MapActivity" />
-        <activity android:name=".LoginActivity" >
+        <activity android:name=".MapActivity" >
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
+        </activity>
+        <activity android:name=".LoginActivity" >
+
         </activity>
         <activity android:name=".LoadingActivity" />
         <activity android:name=".MainActivity" />
