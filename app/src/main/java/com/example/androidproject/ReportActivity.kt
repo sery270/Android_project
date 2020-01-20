@@ -70,7 +70,6 @@ class ReportActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         if(resultCode== Activity.RESULT_OK){
             if(requestCode == OPEN_GALLERY){
                 var currentImageUrl: Uri?=data?.data
