@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
 
         MainActivity_map_imageView.setOnClickListener{
             startActivity(Intent(this,MapActivity::class.java))
+
         }
         MainActivity_commu_imageView.setOnClickListener{
             startActivity(Intent(this,CommuActivity::class.java))

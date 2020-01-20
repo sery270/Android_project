@@ -13,12 +13,17 @@ import com.bumptech.glide.Glide
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.data_list_item.view.*
 import java.util.ArrayList
+import android.content.Intent
 
 class Adapter (val context: Context, val itemCheck: (Report) -> Unit)
     : RecyclerView.Adapter<Adapter.ViewHolder>() {
+
+
     private var items = ArrayList<Report>()
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
+
+
         val inflater = LayoutInflater.from(viewGroup.context)
         val itemView: View = inflater.inflate(R.layout.data_list_item, viewGroup, false)
         return ViewHolder(itemView, itemCheck)
