@@ -39,13 +39,14 @@ import org.json.JSONObject
 import java.net.URL
 
 class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
+
+    //마커를 눌렀을 때, 해당 화장실의 신고 내역을 보여주는 화면으로 전환해주는 함수
     override fun onMarkerClick(m:Marker): Boolean {
         val intent =Intent(this@MapActivity, ReportListActivity::class.java)
         //getJSONObject(인덱스) 어떤 인덱스가 들어가야할지, marker class의 정보를 활용해야 한다.
         //marker class의 title 속성에 서울시 API의 주키인 POI_ID 값을 넣어서 활용함
         val id  = m.title
         intent.putExtra("id", id)
-        intent.putExtra("i", 0)
         startActivity(intent)
         return true
     }
@@ -58,6 +59,9 @@ class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
     val REQUEST_PERMISSION_CODE = 1
     val DEFAULT_ZOOM_LEVEL = 17f
 
+    //애뮬레이터에서 gps가 구글 본사로 찍히므로, 디폴트 위치를 넣어줌
+    //처음 맵 액티비티에 갔을 때, 처음으로 카메라가 비춰지는 장소인 디폴트 위치로
+    //아무 화장실을 넣음
     val CITY_HALL = LatLng(37.4923861462717, 126.909832374686)
 
     var googleMap: GoogleMap? = null
@@ -143,6 +147,8 @@ class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
         return LatLng(lastKnownLocation.latitude, lastKnownLocation.longitude)
     }
 
+    //우측 하단 동그라미 버튼을 누르면 현재위치로 카메라가 이동함
+    //에뮬레이터 상에선 구글 본사로 찍힙니다.
     fun onMyLocationButtonClick() {
         when {
             hasPermissions() -> googleMap?.moveCamera(
@@ -321,19 +327,25 @@ class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
     }
 
 
-
-
     // 마커를 추가하는 함수
     fun addMarkers(toilet: JSONObject) {
+        //해당 화장실의 신고 개수를 세는 변수
         var cnt = 0
+        //제이슨 객체에 저장된 POI_ID 값은 각 화장실의 고유 id 정보이다.
         val id:String = toilet.getString("POI_ID")
+        //파이어 스토어에서 객체를 생성하여, Reports 컬렉션에서, 위에서 넣어준 id 값을
+        //id 필드 값으로 가지느 신고 내역들을 가져오게 한다.
         FirebaseFirestore.getInstance()
             .collection("Reports")
             .whereEqualTo("id",id).get()
             .addOnSuccessListener {
+                //해당 쿼리가 잘 실행되어서, 결과가 왔다면
+                //해당 뭐리 스냅샷의 크기, 즉 문서의 개수를 cnt에 넣어준다.
                 cnt = it.size()
-                println(cnt)
-                // 화장실 이미지로 사용할 Bitmap
+                //println(cnt)
+
+
+                // 화장실 이미지로 사용할 Bitmap을 cnt변수에 따라서 초기화 해준다
                 val bitmap by lazy {
                     if(cnt == 0){ //신고가 0개라면 초록색
                         val drawable = resources.getDrawable(R.drawable.green_gps) as BitmapDrawable

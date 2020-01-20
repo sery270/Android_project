@@ -18,12 +18,11 @@ import android.content.Intent
 class Adapter (val context: Context, val itemCheck: (Report) -> Unit)
     : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
-
+    //report형 객체를 담을 배열 선언
     private var items = ArrayList<Report>()
 
+    //view객체를 담는 viewHolder를 만드는 함수
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-
-
         val inflater = LayoutInflater.from(viewGroup.context)
         val itemView: View = inflater.inflate(R.layout.data_list_item, viewGroup, false)
         return ViewHolder(itemView, itemCheck)
@@ -47,21 +46,14 @@ class Adapter (val context: Context, val itemCheck: (Report) -> Unit)
     inner class ViewHolder(itemView: View, itemCheck: (Report) -> Unit)
         : RecyclerView.ViewHolder(itemView) {
         fun setItem(item: Report) {
-            // url을 다운받기
-            //itemView.uploadimg.setImageURI(item.ImageUrl)
-
-
-
+            //view 객체를 만듦
+            //해당 화장실의 고유 id 값을 넣음
             itemView.poiid.text = item.Id
+            //사용자가 입력한 세부 위치 정보를 넣음
             itemView.detail.text = item.DetailLocation
-            //firebaseui?.loadWithGlide(item.ImageUrl!!)
-            /*   Glide.with(itemView)
-                    .load(item.ImageUrl)
-                    .into(itemView.uploadimg)
-    */
 
+            //파이어 스토리지에 저장된 이미지에 대한 정보를 가져와서 넣음
             lateinit var imageUrlfromStorage: Uri
-
             val storage = FirebaseStorage.getInstance()
             var storageRef = storage.getReferenceFromUrl("gs://androidprojectguru.appspot.com").child("images/"+item.ImageUrl)
             storageRef.downloadUrl.addOnCompleteListener {task->
@@ -70,12 +62,10 @@ class Adapter (val context: Context, val itemCheck: (Report) -> Unit)
                     Glide.with(itemView)
                         .load(imageUrlfromStorage)
                         .into(itemView.uploadimg)
-
                 }
                 else {
-                    // 실패하면 토스트 띄울건데 토스트 띄우는 코드 잘 모름;;
-                }
 
+                }
             }
 
             itemView.setOnClickListener() { itemCheck(item) }

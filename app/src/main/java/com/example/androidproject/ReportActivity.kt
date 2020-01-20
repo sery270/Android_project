@@ -62,7 +62,7 @@ class ReportActivity : AppCompatActivity() {
 
 
             //데이터를 firestore로 보내는 함수 호출
-             //filename을 imageUrl필드에 저장함
+            //filename을 imageUrl필드에 저장함
            addReport(filename)
 
         }
