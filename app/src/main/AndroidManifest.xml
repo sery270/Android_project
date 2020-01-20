@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.androidproject">
+
     <!-- 현재 위치를 위한 권한 요청 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 인터넷 사용 권한 요청. 최신 버전에서도 런타임에 체크할 필요 없음 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <!-- 인터넷 사용 권한 요청. 최신 버전에서도 런타임에 체크할 필요 없음 -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -15,18 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".WriteActivity" />
 
-        <activity android:name=".CommunityActivity"/>
-
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id" />
-
-        <activity
-            android:name="com.facebook.FacebookActivity"
-            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name" />
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">
@@ -38,32 +30,28 @@
 
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
-        </activity> <!-- 구글 클라우드 플랫폼에서 발급받은 API 키를 여기에 -->
+        </activity>
+
+        <!-- 구글 클라우드 플랫폼에서 발급받은 API 키를 여기에 넣음 -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDhIEEnp2BhmJAJu1lmEFxjvvcTrCsEEis" /> <!-- 구글 플레이 서비스 버전을 적는 곳으로 그대로 타이핑 -->
+            android:value="AIzaSyDhIEEnp2BhmJAJu1lmEFxjvvcTrCsEEis" />
+        <!-- 구글 플레이 서비스 버전을 적는 곳으로 그대로 타이핑 -->
         <meta-data
             android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" /> <!-- 안드로이드 파이 버전부터 필요 -->
+            android:value="@integer/google_play_services_version" />
+        <!-- 안드로이드 파이 버전부터 필요 -->
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-        <activity
-            android:name=".CommuActivity"
-            android:label="@string/title_activity_commu"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".FingerPrintActivity" />
         <activity android:name=".ReportActivity" />
         <activity android:name=".ReportListActivity" />
-        <activity android:name=".InfoActivity" />
-        <activity android:name=".MapActivity" >
+        <activity android:name=".MapActivity" />
 
-        </activity>
-        <activity android:name=".LoginActivity" >
+        <activity android:name=".LoginActivity" />
 
-
-        </activity>
+        <!-- 시작 점 -->
         <activity android:name=".LoadingActivity"
             android:theme="@style/SplashTheme"
             android:screenOrientation="portrait">
@@ -73,6 +61,7 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
+
         <activity android:name=".MainActivity" />
     </application>
 
