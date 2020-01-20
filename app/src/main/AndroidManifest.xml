@@ -11,9 +11,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="여심저격"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
@@ -45,24 +46,29 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-        <activity android:name=".ReportActivity" />
-        <activity android:name=".ReportListActivity" />
-        <activity android:name=".MapActivity" />
+        <activity android:name=".ReportActivity"
+            android:label="신고"/>
+        <activity android:name=".ReportListActivity"
+            android:label="신고 목록"/>
+        <activity android:name=".MapActivity"
+            android:label="지도"/>
 
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".LoginActivity"
+            android:label="로그인"/>
 
         <!-- 시작 점 -->
         <activity android:name=".LoadingActivity"
             android:theme="@style/SplashTheme"
             android:screenOrientation="portrait">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"
+            android:label="화장실 찾기"/>
     </application>
 
 </manifest>
