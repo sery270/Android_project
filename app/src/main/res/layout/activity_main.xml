@@ -1,99 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/MainActivity_map_textView"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
+        android:text="화장실 찾기"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="236dp"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:text="map"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MainActivity_map_imageView" />
 
-        <ImageView
-            android:id="@+id/MainActivity_map_imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="130dp"
-            android:layout_marginRight="30dp"
-            app:srcCompat="@drawable/map"
-            tools:layout_editor_absoluteX="54dp"
-            tools:layout_editor_absoluteY="176dp" />
+    <ImageView
+        android:id="@+id/MainActivity_map_imageView"
+        android:layout_width="373dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="38dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/location" />
 
-        <ImageView
-            android:id="@+id/MainActivity_commu_imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/commu"
-            tools:layout_editor_absoluteX="219dp"
-            tools:layout_editor_absoluteY="140dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="356dp"
-        android:layout_height="91dp"
-        android:layout_marginBottom="200dp"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="130dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="40dp"
-            android:gravity="center"
-            android:orientation="vertical"
-            tools:layout_editor_absoluteX="54dp"
-            tools:layout_editor_absoluteY="316dp">
-
-            <TextView
-                android:id="@+id/MainActivity_map_textView"
-                android:layout_width="130dp"
-                android:layout_height="wrap_content"
-                android:text="화장실 찾기"
-                android:textColor="#000000"
-                android:textSize="24sp" />
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="map"
-                android:textColor="#000000"
-                android:textSize="18sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="130dp"
-            android:layout_height="97dp"
-            android:layout_marginLeft="25dp"
-            android:gravity="center"
-            android:orientation="vertical"
-            tools:layout_editor_absoluteX="218dp"
-            tools:layout_editor_absoluteY="314dp">
-
-            <TextView
-                android:id="@+id/MainActivity_commu_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="커뮤니티"
-                android:textColor="#000000"
-                android:textSize="24sp" />
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="84dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="여심"
-                android:textColor="#050505"
-                android:textSize="18sp" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
