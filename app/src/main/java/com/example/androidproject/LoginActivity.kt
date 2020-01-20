@@ -4,24 +4,18 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.Button
 import android.widget.Toast
-import com.example.androidproject.R.id.LoginActivity_login_Button
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.ConnectionResult
-import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.activity_login.*
-import java.lang.Exception
 
 class LoginActivity : AppCompatActivity() {
     private val REQUEST_CODE_SIGN_IN = 1001
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
 
         val googleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        LoginActivity_login_Button.setOnClickListener {
+        LoginActivity_login_GoogleButton.setOnClickListener {
             val intent = googleSignInClient.signInIntent
             startActivityForResult(intent, REQUEST_CODE_SIGN_IN)
         }
