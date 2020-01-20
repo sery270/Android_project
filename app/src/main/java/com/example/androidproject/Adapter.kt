@@ -63,7 +63,7 @@ class Adapter (val context: Context, val itemCheck: (Report) -> Unit)
             lateinit var imageUrlfromStorage: Uri
 
             val storage = FirebaseStorage.getInstance()
-            var storageRef = storage.getReferenceFromUrl("gs://androidproject-d4054.appspot.com/").child("images/"+item.ImageUrl)
+            var storageRef = storage.getReferenceFromUrl("gs://androidprojectguru.appspot.com").child("images/"+item.ImageUrl)
             storageRef.downloadUrl.addOnCompleteListener {task->
                 if(task.isSuccessful){
                     imageUrlfromStorage = task.result!!

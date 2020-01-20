@@ -57,7 +57,7 @@ class ReportActivity : AppCompatActivity() {
             var now:Date = Date()
             var filename:String = formatter.format(now) + ".jpg"
 
-            storageRef = storage.getReferenceFromUrl("gs://androidproject-d4054.appspot.com/").child("images/"+filename)
+            storageRef = storage.getReferenceFromUrl("gs://androidprojectguru.appspot.com").child("images/"+filename)
             storageRef.putFile(imageFromView)
 
 
