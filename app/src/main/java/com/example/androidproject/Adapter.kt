@@ -9,13 +9,18 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_loading.view.*
 import kotlinx.android.synthetic.main.data_list_item.view.*
 import java.util.ArrayList
+import android.content.Intent
 
 class Adapter (val context: Context, val itemCheck: (Report) -> Unit , val itemCheck2: (CommuPost) -> Unit)
     : RecyclerView.Adapter<Adapter.ViewHolder>() {
+
+
     private var items = ArrayList<Report>()
     private var posts = ArrayList<CommuPost>()
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
+
+
         val inflater = LayoutInflater.from(viewGroup.context)
 
         if(itemCheck2==null) { // Report 인경우

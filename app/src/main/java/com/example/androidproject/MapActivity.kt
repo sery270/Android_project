@@ -45,6 +45,7 @@ class MapActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener{
         //marker class의 title 속성에 서울시 API의 주키인 POI_ID 값을 넣어서 활용함
         val id  = m.title
         intent.putExtra("id", id)
+        intent.putExtra("i", 0)
         startActivity(intent)
         return true
     }

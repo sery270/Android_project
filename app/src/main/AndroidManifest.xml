@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.androidproject">
     <!-- 현재 위치를 위한 권한 요청 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -15,13 +14,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true"
-        tools:ignore="GoogleAppIndexingWarning">
+        android:usesCleartextTraffic="true">
+        <activity android:name=".ListActivity" />
+        <activity android:name=".WriteActivity"/>
+        <activity android:name=".WriteListActivity"/>
+
+
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
         <activity
-            android:name=".CommunityActivity"
-            android:label="@string/title_activity_community"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <!-- 구글 클라우드 플랫폼에서 발급받은 API 키를 여기에 -->
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity> <!-- 구글 클라우드 플랫폼에서 발급받은 API 키를 여기에 -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCosoQ-ZBEudcyUqyFLaDrxkmHvTA4KoNA" /> <!-- 구글 플레이 서비스 버전을 적는 곳으로 그대로 타이핑 -->
@@ -36,21 +55,18 @@
             android:name=".CommuActivity"
             android:label="@string/title_activity_commu"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".WriteActivity" >
+        <activity android:name=".FingerPrintActivity" />
+        <activity android:name=".ReportActivity" />
+        <activity android:name=".ReportListActivity" />
+        <activity android:name=".InfoActivity" />
+        <activity android:name=".MapActivity" />
+        <activity android:name=".LoginActivity" >
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
-        <activity android:name=".FingerPrintActivity" />
-        <activity android:name=".ReportActivity"></activity>
-        <activity android:name=".ReportListActivity" />
-        <activity android:name=".InfoActivity" />
-        <activity android:name=".MapActivity">
-
-        </activity>
-        <activity android:name=".LoginActivity"></activity>
         <activity android:name=".LoadingActivity" />
         <activity android:name=".MainActivity" />
     </application>

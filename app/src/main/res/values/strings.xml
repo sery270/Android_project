@@ -1,4 +1,6 @@
 <resources>
+    <string name="facebook_app_id">877784412679448</string>
+    <string name="fb_login_protocol_scheme">fb877784412679448</string>
     <string name="app_name">AndroidProject</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="large_text">
